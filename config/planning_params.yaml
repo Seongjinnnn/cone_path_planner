@@ -1,0 +1,50 @@
+cone_sorter_node:
+  ros__parameters:
+    # The TF frame in which all calculations are performed. Usually a fixed frame like 'world' or 'map'.
+    #* `target_frame`: 모든 계산이 수행되는 기준 좌표계입니다. 일반적으로 'odom' 또는 'map'과 같은 고정된 프레임을 사용합니다.
+    target_frame: "odom"
+
+    # Max distance (m) from the vehicle to a cone to be considered a starting point for a path.
+   #* `max_dist_to_first`: 차량에서부터 경로의 시작점으로 간주될 콘까지의 최대 거리(m)입니다.
+    max_dist_to_first: 6.0 #7.0
+
+    # The 'k' in k-nearest-neighbors. Max number of neighbors to consider for graph connection.
+   #* `max_n_neighbors`: 경로를 구성하기 위해 그래프 연결 시 고려할 최대 이웃 콘의 수 (k-최근접 이웃의 k' 값) 입니다.
+    max_n_neighbors: 5
+
+    # Absolute max distance (m) between two neighbors to be considered a valid connection.
+   #* `max_dist`: 두 이웃 콘이 유효한 연결로 간주되기 위한 절대 최대 거리(m)입니다.
+    max_dist: 6.0 #6.0 #5.0
+
+    # Maximum number of cones allowed in a single path configuration (left or right side).
+   #* `kMaxLen`: 단일 경로(왼쪽 또는 오른쪽)에 허용되는 최대 콘의 수입니다.
+    kMaxLen: 5 #5
+
+    # Max absolute angle change (rad) between path segments. Controls path smoothness.
+   #* `thr_abs`: 경로의 각 세그먼트 사이의 최대 절대 각도 변화량(radian)으로, 경로의 부드러움을 제어합니다.
+    thr_abs: 0.872665
+
+    # Max directional angle change (rad). Prevents a path from turning back on itself.
+   #* `thr_dir`: 경로가 스스로를 향해 되돌아가는 것을 방지하기 위한 최대 방향 각도 변화량(radian)입니다.
+    thr_dir: 0.698
+
+    # Penalty weight for paths with large angle changes. Higher values prefer smoother paths.
+   #* `angle_weight`: 경로의 각도 변화에 대한 페널티 가중치입니다. 값이 높을수록 더 부드러운 경로를 선호하게 됩니다.
+    angle_weight: 10.0
+
+    # Penalty weight for short paths. Higher values prefer paths with more cones.
+   #* `length_weight`: 짧은 경로에 대한 페널티 가중치입니다. 값이 높을수록 더 많은 콘을 포함하는 긴 경로를 선호하게 됩니다.
+    length_weight: 100.0
+
+    # Major radius (m) of the elliptical search area for finding a matching cone on the opposite side.
+   #* `major_r`: 반대편에서 일치하는 콘을 찾기 위한 타원형 검색 영역의 장반경(m)입니다.
+    major_r: 8.0 #5.0
+
+    # Minor radius (m) of the elliptical search area for finding a matching cone on the opposite side.
+   #* `minor_r`: 반대편에서 일치하는 콘을 찾기 위한 타원형 검색 영역의 단반경(m)입니다.
+    minor_r: 4.0 #2.0
+
+    # Assumed minimum track width (m). Used to create a virtual cone if no match is found.
+   #* `min_track_w`: 일치하는 콘을 찾지 못했을 때 가상의 콘을 생성하는 데 사용되는 최소 트랙 폭(m)입니다.
+    min_track_w: 3.0
+

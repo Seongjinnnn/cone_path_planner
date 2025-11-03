@@ -1,0 +1,37 @@
+cone_sorter_node:
+  ros__parameters:
+    # The TF frame in which all calculations are performed. Usually a fixed frame like 'world' or 'map'.
+    target_frame: "odom"
+
+    # Max distance (m) from the vehicle to a cone to be considered a starting point for a path.
+    max_dist_to_first: 5.0
+
+    # The 'k' in k-nearest-neighbors. Max number of neighbors to consider for graph connection.
+    max_n_neighbors: 5
+
+    # Absolute max distance (m) between two neighbors to be considered a valid connection.
+    max_dist: 3.0 #5.0
+
+    # Maximum number of cones allowed in a single path configuration (left or right side).
+    kMaxLen: 20 #5
+
+    # Max absolute angle change (rad) between path segments. Controls path smoothness.
+    thr_abs: 1.22
+
+    # Max directional angle change (rad). Prevents a path from turning back on itself.
+    thr_dir: 0.698
+
+    # Penalty weight for paths with large angle changes. Higher values prefer smoother paths.
+    angle_weight: 1.0
+
+    # Penalty weight for short paths. Higher values prefer paths with more cones.
+    length_weight: 100.0
+
+    # Major radius (m) of the elliptical search area for finding a matching cone on the opposite side.
+    major_r: 7.0 #5.0
+
+    # Minor radius (m) of the elliptical search area for finding a matching cone on the opposite side.
+    minor_r: 2.0
+
+    # Assumed minimum track width (m). Used to create a virtual cone if no match is found.
+    min_track_w: 3.0
